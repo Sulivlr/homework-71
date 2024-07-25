@@ -1,5 +1,5 @@
 export interface ApiDish {
-  title: string;
+  name: string;
   price: number;
   image: string;
 }
@@ -10,4 +10,10 @@ export interface ApiDishes {
 
 export interface Dish {
   id: string;
+}
+
+export interface DishMutation {
+  name: string;
+  price: string;
+  image: string;
 }

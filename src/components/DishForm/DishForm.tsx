@@ -1,21 +1,36 @@
 import React, {useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
+import {selectDishIsCreating} from '../../store/dishesSlice';
+import {createDish} from '../../store/dishesThunks';
+import {DishMutation} from '../../types';
+import {useNavigate} from 'react-router-dom';
+import ButtonSpinner from '../ButtonSpinner/ButtonSpinner';
 
 const DishForm = () => {
-
-  const [dish, setDish] = useState({
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isCreating = useAppSelector(selectDishIsCreating);
+  const [dish, setDish] = useState<DishMutation>({
     name: '',
     image: '',
     price: '',
   });
 
-  const onFieldChange = (event: React.ChangeEvent) => {
+  const onFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
 
     setDish((prevState) => ({...prevState, [name]: value}));
   };
-  const onSubmit = (event: React.FormEvent) => {
+  const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    try {
+      await dispatch(createDish(dish));
+      navigate('/admin/dishes');
+    } catch (error) {
+      console.error('coudnt create');
+    }
   };
+
 
   return (
     <form className="container mb-4 mt-3" onSubmit={onSubmit}>
@@ -57,8 +72,9 @@ const DishForm = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary mt-3">
+      <button type="submit" disabled={isCreating} className="btn btn-primary mt-3">
         Create
+        {isCreating && <ButtonSpinner />}
       </button>
     </form>
   );

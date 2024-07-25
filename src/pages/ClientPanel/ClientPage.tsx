@@ -7,7 +7,7 @@ const ClientPage = () => {
   };
 
   return (
-    <div className="container mt-2">
+    <div className="container mt-2 mb-4">
       <div className="d-flex justify-content-between">
         <h2 className="mt-3">Turtle Pizza</h2>
       </div>

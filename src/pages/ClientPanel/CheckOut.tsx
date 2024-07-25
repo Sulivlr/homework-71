@@ -1,12 +1,12 @@
 const CheckOut = () => {
   return (
-    <div className="container">
+    <div className="container mt-4 mb-4">
       <div>
         <h1>Your Order:</h1>
       </div>
       <div className="d-flex justify-content-between mt-5">
         <p style={{fontSize: '40px'}}>Pepperoni</p>
-        <p style={{fontSize: '40px'}}>450 KGs</p>
+        <p style={{fontSize: '40px'}}>450 KGS</p>
         <div>
           <button className="btn btn-danger">Delete</button>
         </div>

@@ -7,7 +7,7 @@ const AdminDishes = () => {
   } ;
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 mb-4">
       <div className="d-flex justify-content-between">
         <h2>Dishes</h2>
         <button onClick={formClick} style={{fontSize: '25px'}} className="btn text-bg-success">Add new Dish</button>

@@ -19,6 +19,7 @@ const App = () => {
           <Route path="/admin/orders" element={<AdminOrders/>} />
           <Route path="/checkout" element={<CheckOut/>} />
           <Route path="/new-dish" element={<DishForm/>} />
+          <Route path="*" element={<h1>Page Doesnt Exist</h1>} />
         </Routes>
       </main>
     </>

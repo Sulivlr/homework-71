@@ -1,6 +1,6 @@
 const AdminOrders = () => {
   return (
-    <div className="container mt-2">
+    <div className="container mt-2 mb-4">
       <div className="mt-4">
         <h2>Orders</h2>
       </div>

@@ -1,14 +1,16 @@
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {fetchDishes} from '../../store/dishesThunks';
-import {selectDishes, selectDishesAreFetching} from '../../store/dishesSlice';
+import {selectDeleteDish, selectDishes, selectDishesAreFetching} from '../../store/dishesSlice';
 import Spinner from '../../components/Spinner/Spinner';
+import Dishes from './Dishes';
 
 const AdminDishes = () => {
   const dispatch = useAppDispatch();
   const dishes = useAppSelector(selectDishes);
   const isFetching = useAppSelector(selectDishesAreFetching);
+  const isDeleting = useAppSelector(selectDeleteDish);
 
   useEffect(() => {
     dispatch(fetchDishes());
@@ -30,19 +32,12 @@ const AdminDishes = () => {
         <div>
           <div className="card-body">
               {dishes.map((dish) => (
-                <div key={dish.id} className="card d-flex flex-row justify-content-between mt-4">
-                  <img style={{width: '20%'}}
-                       src={dish.image}
-                       alt="img"/>
-                  <div>
-                    <p style={{fontSize: '40px'}} className="mt-5">{dish.name}</p>
-                  </div>
-                  <p style={{fontSize: '40px'}} className="mt-5">{dish.price} KGS</p>
-                  <div className="mt-5">
-                    <button style={{fontSize: '20px'}} className="btn btn-primary me-5">Edit</button>
-                    <button style={{fontSize: '20px'}} className="btn btn-danger me-5">Delete</button>
-                  </div>
-                </div>
+                <Dishes id={dish.id}
+                        name={dish.name}
+                        image={dish.image}
+                        price={dish.price}
+                        isLoading={dish.id === isDeleting}
+                />
               ))}
           </div>
         </div>
